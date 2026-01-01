@@ -1,7 +1,5 @@
--- WHATS UP GUYS
--- NotKrystalDance has been fixed and works CORRECTLY!
--- Enjoy the dancing experience.
--- This works for Just a Baseplate only. You have been warned.
+-- NotKrystalDanceV2
+-- Reserved on top monke!!!1!
 
 if not game.IsLoaded then
     game.Loaded:Wait()
@@ -9,14 +7,17 @@ end
 
 local function sendCommand(command)
     game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(command)
-    wait(2)
     print("sent command: " .. command)
 end
 
 wait(2)
-sendCommand("Made by Reserved. Status: Private and accessible for friends only.")
+sendCommand("this script was made by Reserved and is accessible for friends only. its private.")
 wait(2)
 sendCommand("-r6")
+
+-- Send -net IMMEDIATELY after 0.5 seconds
+wait(0.5)
+sendCommand("-net")
 
 wait(3)
 
@@ -24,7 +25,9 @@ print("=== READ THIS ===")
 print("When CurrentAngle loads:")
 print("1. Click 'Take me there'")
 print("2. Wait 10 seconds for reanimation")
-print("3. Done")
+print("3. CurrentAngle will handle appearing dead")
+print("4. Dance script will load")
+print("5. Done!")
 
 local settings = {
     ["Use default animations"] = true,
@@ -72,25 +75,25 @@ local danceSuccess, danceError = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/gititgit1113/not-krystal-dance-v2-fe/refs/heads/main/KrystalDance.lua", true))()
 end)
 
-wait(2)
-
 if danceSuccess then
     print("dance script loaded successfully")
-    print("executing final commands...")
     
+    -- Clear hats immediately
     sendCommand("-ch")
+    
+    -- Wait 0.8 seconds then get hats
+    wait(0.8)
     sendCommand("-gh 11748356,19027209")
-    sendCommand("-net")
     
     print("finished")
-    sendCommand("script executed, enjoy. reserved on top")
+    sendCommand("script execution finished")
 else
     print("failed: " .. tostring(danceError))
-    sendCommand("script failed to load...")
+    sendCommand("script failed to load")
 end
 
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Finished",
-    Text = "pray this works bro",
+    Title = "Loaded",
+    Text = "NotKrystalDanceV2 by Reserved",
     Duration = 5
 })
