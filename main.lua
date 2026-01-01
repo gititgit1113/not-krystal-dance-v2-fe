@@ -1,3 +1,7 @@
+-- Hey! I'm gonna warn you this script is broken and is being fixed, on development!
+-- I have changed the Krystal Dance mirrors so yea
+-- Reserved on top btw!
+
 if not game.IsLoaded then
     game.Loaded:Wait()
 end
@@ -9,7 +13,7 @@ local function sendCommand(command)
 end
 
 wait(2)
-sendCommand("THIS SCRIPT IS PRIVATE AND IN DEV/FIXING. Made by Reserved")
+sendCommand("reserved on top! loading script")
 wait(2)
 sendCommand("-r6")
 sendCommand("-gh 11748356,19027209")
@@ -19,12 +23,10 @@ wait(3)
 print("=== READ THIS ===")
 print("When CurrentAngle loads:")
 print("1. Click 'Take me there'")
-print("2. It will kill your character and start countdown")
-print("3. Wait for reanimation to finish (10 seconds)")
-print("4. Character will be teleported to center after reanimation")
-print("5. Dance script will load")
-print("6. THEN -net will be sent")
-print("=== STAY STILL ===")
+print("2. Wait 10 seconds for reanimation")
+print("3. Dance script will load automatically")
+print("4. Then -net will be sent")
+print("=== IMPORTANT: DANCE REQUIRES REANIMATION ===")
 
 local settings = {
     ["Use default animations"] = true,
@@ -64,9 +66,9 @@ end
 
 wait(4)
 
-print("dancing time")
+print("loading krystal dance v2")
 local danceSuccess, danceError = pcall(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/TheRareOcelot/roblox-fe-scripts/refs/heads/main/krystal%20dance", true))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/gititgit1113/not-krystal-dance-v2-fe/refs/heads/main/KrystalDance.lua", true))()
 end)
 
 wait(2)
