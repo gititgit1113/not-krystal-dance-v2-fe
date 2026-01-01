@@ -1,6 +1,4 @@
--- Hey! I'm gonna warn you this script is broken and is being fixed, on development!
--- I have changed the Krystal Dance mirrors so yea
--- Reserved on top btw!
+-- on testing..
 
 if not game.IsLoaded then
     game.Loaded:Wait()
@@ -13,7 +11,7 @@ local function sendCommand(command)
 end
 
 wait(2)
-sendCommand("reserved on top! loading script")
+sendCommand("made by Reserved! status: private")
 wait(2)
 sendCommand("-r6")
 sendCommand("-gh 11748356,19027209")
@@ -24,8 +22,10 @@ print("=== READ THIS ===")
 print("When CurrentAngle loads:")
 print("1. Click 'Take me there'")
 print("2. Wait 10 seconds for reanimation")
-print("3. Dance script will load automatically")
-print("4. Then -net will be sent")
+print("3. Character health set to 0 (appears dead)")
+print("4. But character remains movable for dance")
+print("5. Dance script will load")
+print("6. Then -net will be sent")
 print("=== IMPORTANT: DANCE REQUIRES REANIMATION ===")
 
 local settings = {
@@ -54,9 +54,39 @@ wait(12)
 
 if success then
     print("reanimation finished")
+    
+    -- APPEAR DEAD BUT STILL MOVABLE
+    print("setting character to appear dead but movable...")
     local player = game.Players.LocalPlayer
-    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-        player.Character.HumanoidRootPart.CFrame = CFrame.new(0, 5, 0)
+    local character = player.Character
+    if character then
+        local humanoid = character:FindFirstChild("Humanoid")
+        if humanoid then
+            -- Set health to 0 to appear dead
+            humanoid.Health = 0
+            
+            -- IMPORTANT: Keep joints intact so dance script can move character
+            -- DO NOT use character:BreakJoints()
+            
+            -- Make sure character can still be controlled
+            humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+            
+            -- Optional: Remove dead ragdoll effects
+            for _, part in pairs(character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    -- Keep parts movable for dance animations
+                    part.Anchored = false
+                    part.CanCollide = true
+                end
+            end
+            
+            print("character appears dead (health=0) but remains movable")
+        end
+    end
+    
+    -- Teleport to center to prevent falling
+    if character and character:FindFirstChild("HumanoidRootPart") then
+        character.HumanoidRootPart.CFrame = CFrame.new(0, 5, 0)
         wait(1)
     end
 else
