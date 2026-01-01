@@ -14,15 +14,16 @@ wait(2)
 sendCommand("-r6")
 sendCommand("-gh 11748356,19027209")
 sendCommand("-net")
-sendCommand("-pd")
 
 wait(3)
 
-print("=== ATTENTION ===")
-print("When CurrentAngle shows 'Game is not supported'")
-print("Click 'Take me there' within 10 seconds!")
-print("After clicking, wait for reanimation to finish")
-print("=== WARNING: IF NO CLICK, SCRIPT WILL FAIL ===")
+print("=== READ THIS ===")
+print("When CurrentAngle loads:")
+print("1. Click 'Take me there'")
+print("2. It will kill your character and start countdown")
+print("3. Wait for reanimation to finish (10 seconds)")
+print("4. After reanimation, -pd will be sent automatically")
+print("=== DO NOT CLOSE THE WARNING ===")
 
 local settings = {
     ["Use default animations"] = true,
@@ -46,14 +47,17 @@ local success, error = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/somethingsimade/CurrentAngleV4/refs/heads/main/v4.lua"))()
 end)
 
+wait(12)
+
 if success then
     print("reanimation finished")
+    sendCommand("-pd")
 else
     print("failed to reanimate character: " .. tostring(error))
     sendCommand("reanimation failed")
 end
 
-wait(15)
+wait(4)
 
 print("dancing time")
 local danceSuccess, danceError = pcall(function()
