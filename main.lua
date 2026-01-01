@@ -1,6 +1,3 @@
--- NotKrystalDanceV2
--- Reserved on top monke!!!1!
-
 if not game.IsLoaded then
     game.Loaded:Wait()
 end
@@ -11,13 +8,9 @@ local function sendCommand(command)
 end
 
 wait(2)
-sendCommand("this script was made by Reserved and is accessible for friends only. its private.")
+sendCommand("by Reserved. private/friends-only")
 wait(2)
 sendCommand("-r6")
-
--- Send -net IMMEDIATELY after 0.5 seconds
-wait(0.5)
-sendCommand("-net")
 
 wait(3)
 
@@ -27,7 +20,8 @@ print("1. Click 'Take me there'")
 print("2. Wait 10 seconds for reanimation")
 print("3. CurrentAngle will handle appearing dead")
 print("4. Dance script will load")
-print("5. Done!")
+print("5. After dance loads: -net, then -ch, then -gh")
+print("6. Done!")
 
 local settings = {
     ["Use default animations"] = true,
@@ -78,7 +72,11 @@ end)
 if danceSuccess then
     print("dance script loaded successfully")
     
-    -- Clear hats immediately
+    -- Send -net IMMEDIATELY when dance script loads (after 0.5 seconds)
+    wait(0.5)
+    sendCommand("-net")
+    
+    -- Clear hats immediately after -net
     sendCommand("-ch")
     
     -- Wait 0.8 seconds then get hats
@@ -93,7 +91,7 @@ else
 end
 
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Loaded",
-    Text = "NotKrystalDanceV2 by Reserved",
+    Title = "Finished",
+    Text = "pray this works bro",
     Duration = 5
 })
