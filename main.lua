@@ -9,7 +9,7 @@ local function sendCommand(command)
 end
 
 wait(2)
-sendCommand("fixing until this works, reserved on top")
+sendCommand("Script is being fixed. You can still use it though. -Reserved")
 wait(2)
 sendCommand("-r6")
 sendCommand("-gh 11748356,19027209")
@@ -23,7 +23,6 @@ print("1. Click 'Take me there'")
 print("2. It will kill your character and start countdown")
 print("3. Wait for reanimation to finish (10 seconds)")
 print("4. Character will be teleported to center after reanimation")
-print("5. Then -pd will be sent")
 print("=== STAY STILL ===")
 
 local settings = {
@@ -35,7 +34,7 @@ local settings = {
     ["Respawn character"] = true,
     ["Instant respawn"] = false,
     ["Hide HumanoidRootPart"] = false,
-    ["PermaDeath fake character"] = true,
+    ["PermaDeath fake character"] = false,
     ["R15 Reanimate"] = false,
     ["Click Fling"] = false,
     ["Anti-Fling"] = true,
@@ -57,7 +56,6 @@ if success then
         player.Character.HumanoidRootPart.CFrame = CFrame.new(0, 5, 0)
         wait(1)
     end
-    sendCommand("-pd")
 else
     print("failed to reanimate character: " .. tostring(error))
     sendCommand("reanimation failed")
