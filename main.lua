@@ -1,16 +1,22 @@
+-- This script is now working and server-sided. Made for Just a Basepalte only.
+-- this took me too long to port, fixing errors and lots of changes commiting...
+-- anyways enjoy
+
 if not game.IsLoaded then
     game.Loaded:Wait()
 end
 
 local function sendCommand(command)
     game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(command)
+    wait(2)
     print("sent command: " .. command)
 end
 
 wait(2)
-sendCommand("by Reserved. private/friends-only")
+sendCommand("Reserved on top. Status: Private, friends-only")
 wait(2)
 sendCommand("-r6")
+sendCommand("-gh 11748356,19027209")
 
 wait(3)
 
@@ -19,9 +25,9 @@ print("When CurrentAngle loads:")
 print("1. Click 'Take me there'")
 print("2. Wait 10 seconds for reanimation")
 print("3. CurrentAngle will handle appearing dead")
-print("4. Dance script will load")
-print("5. After dance loads: -net, then -ch, then -gh")
-print("6. Done!")
+print("4. Dance script will load (character stays movable)")
+print("5. Then -net will be sent")
+print("=== NO SCRIPT-BASED DEATH - CurrentAngle handles it ===")
 
 local settings = {
     ["Use default animations"] = true,
@@ -32,7 +38,7 @@ local settings = {
     ["Respawn character"] = true,
     ["Instant respawn"] = false,
     ["Hide HumanoidRootPart"] = false,
-    ["PermaDeath fake character"] = true,
+    ["PermaDeath fake character"] = true,  -- THIS makes fake character appear dead
     ["R15 Reanimate"] = false,
     ["Click Fling"] = false,
     ["Anti-Fling"] = true,
@@ -50,6 +56,10 @@ wait(12)
 if success then
     print("reanimation finished")
     
+    -- NO SCRIPT-BASED DEATH - CurrentAngle's setting handles it
+    print("CurrentAngle handling permanent death appearance...")
+    
+    -- Just teleport to center to prevent falling
     local player = game.Players.LocalPlayer
     local character = player.Character
     if character and character:FindFirstChild("HumanoidRootPart") then
@@ -69,20 +79,11 @@ local danceSuccess, danceError = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/gititgit1113/not-krystal-dance-v2-fe/refs/heads/main/KrystalDance.lua", true))()
 end)
 
+wait(2)
+
+sendCommand("-net")
+
 if danceSuccess then
-    print("dance script loaded successfully")
-    
-    -- Send -net IMMEDIATELY when dance script loads (after 0.5 seconds)
-    wait(0.5)
-    sendCommand("-net")
-    
-    -- Clear hats immediately after -net
-    sendCommand("-ch")
-    
-    -- Wait 0.8 seconds then get hats
-    wait(0.8)
-    sendCommand("-gh 11748356,19027209")
-    
     print("finished")
     sendCommand("script execution finished")
 else
