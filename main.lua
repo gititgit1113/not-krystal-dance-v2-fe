@@ -9,11 +9,10 @@ local function sendCommand(command)
 end
 
 wait(2)
-sendCommand("Script is being fixed. You can still use it though. -Reserved")
+sendCommand("THIS SCRIPT IS PRIVATE AND IN DEV/FIXING. Made by Reserved")
 wait(2)
 sendCommand("-r6")
 sendCommand("-gh 11748356,19027209")
-sendCommand("-net")
 
 wait(3)
 
@@ -23,6 +22,8 @@ print("1. Click 'Take me there'")
 print("2. It will kill your character and start countdown")
 print("3. Wait for reanimation to finish (10 seconds)")
 print("4. Character will be teleported to center after reanimation")
+print("5. Dance script will load")
+print("6. THEN -net will be sent")
 print("=== STAY STILL ===")
 
 local settings = {
@@ -67,6 +68,10 @@ print("dancing time")
 local danceSuccess, danceError = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TheRareOcelot/roblox-fe-scripts/refs/heads/main/krystal%20dance", true))()
 end)
+
+wait(2)
+
+sendCommand("-net")
 
 if danceSuccess then
     print("finished")
