@@ -1,5 +1,3 @@
--- on testing..
-
 if not game.IsLoaded then
     game.Loaded:Wait()
 end
@@ -11,7 +9,7 @@ local function sendCommand(command)
 end
 
 wait(2)
-sendCommand("made by Reserved! status: private")
+sendCommand("Krystal Dance ported by Reserved. Status: Private, and for friends only.")
 wait(2)
 sendCommand("-r6")
 sendCommand("-gh 11748356,19027209")
@@ -22,11 +20,10 @@ print("=== READ THIS ===")
 print("When CurrentAngle loads:")
 print("1. Click 'Take me there'")
 print("2. Wait 10 seconds for reanimation")
-print("3. Character health set to 0 (appears dead)")
-print("4. But character remains movable for dance")
-print("5. Dance script will load")
-print("6. Then -net will be sent")
-print("=== IMPORTANT: DANCE REQUIRES REANIMATION ===")
+print("3. CurrentAngle will handle appearing dead")
+print("4. Dance script will load (character stays movable)")
+print("5. Then -net will be sent")
+print("=== NO SCRIPT-BASED DEATH - CurrentAngle handles it ===")
 
 local settings = {
     ["Use default animations"] = true,
@@ -37,7 +34,7 @@ local settings = {
     ["Respawn character"] = true,
     ["Instant respawn"] = false,
     ["Hide HumanoidRootPart"] = false,
-    ["PermaDeath fake character"] = false,
+    ["PermaDeath fake character"] = true,  -- checking this one for now on
     ["R15 Reanimate"] = false,
     ["Click Fling"] = false,
     ["Anti-Fling"] = true,
@@ -55,39 +52,15 @@ wait(12)
 if success then
     print("reanimation finished")
     
-    -- APPEAR DEAD BUT STILL MOVABLE
-    print("setting character to appear dead but movable...")
+    -- current angle handles permadeath now
+    print("CurrentAngle handling permanent death appearance...")
+    
     local player = game.Players.LocalPlayer
     local character = player.Character
-    if character then
-        local humanoid = character:FindFirstChild("Humanoid")
-        if humanoid then
-            -- Set health to 0 to appear dead
-            humanoid.Health = 0
-            
-            -- IMPORTANT: Keep joints intact so dance script can move character
-            -- DO NOT use character:BreakJoints()
-            
-            -- Make sure character can still be controlled
-            humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-            
-            -- Optional: Remove dead ragdoll effects
-            for _, part in pairs(character:GetDescendants()) do
-                if part:IsA("BasePart") then
-                    -- Keep parts movable for dance animations
-                    part.Anchored = false
-                    part.CanCollide = true
-                end
-            end
-            
-            print("character appears dead (health=0) but remains movable")
-        end
-    end
-    
-    -- Teleport to center to prevent falling
     if character and character:FindFirstChild("HumanoidRootPart") then
         character.HumanoidRootPart.CFrame = CFrame.new(0, 5, 0)
         wait(1)
+        print("teleported to center")
     end
 else
     print("failed to reanimate character: " .. tostring(error))
