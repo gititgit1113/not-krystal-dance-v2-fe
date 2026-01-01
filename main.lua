@@ -1,7 +1,3 @@
--- Reserved on top
--- enjoy
-
-
 if not game.IsLoaded then
     game.Loaded:Wait()
 end
@@ -21,6 +17,12 @@ sendCommand("-net")
 sendCommand("-pd")
 
 wait(3)
+
+print("=== ATTENTION ===")
+print("When CurrentAngle shows 'Game is not supported'")
+print("Click 'Take me there' within 10 seconds!")
+print("After clicking, wait for reanimation to finish")
+print("=== WARNING: IF NO CLICK, SCRIPT WILL FAIL ===")
 
 local settings = {
     ["Use default animations"] = true,
@@ -51,7 +53,7 @@ else
     sendCommand("reanimation failed")
 end
 
-wait(4)
+wait(15)
 
 print("dancing time")
 local danceSuccess, danceError = pcall(function()
