@@ -9,7 +9,7 @@ local function sendCommand(command)
 end
 
 wait(2)
-sendCommand("private script made by Reserved. script on testing so dont say its a bad script")
+sendCommand("fixing until this works, reserved on top")
 wait(2)
 sendCommand("-r6")
 sendCommand("-gh 11748356,19027209")
@@ -22,8 +22,9 @@ print("When CurrentAngle loads:")
 print("1. Click 'Take me there'")
 print("2. It will kill your character and start countdown")
 print("3. Wait for reanimation to finish (10 seconds)")
-print("4. After reanimation, -pd will be sent automatically")
-print("=== DO NOT CLOSE THE WARNING ===")
+print("4. Character will be teleported to center after reanimation")
+print("5. Then -pd will be sent")
+print("=== STAY STILL ===")
 
 local settings = {
     ["Use default animations"] = true,
@@ -51,6 +52,11 @@ wait(12)
 
 if success then
     print("reanimation finished")
+    local player = game.Players.LocalPlayer
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        player.Character.HumanoidRootPart.CFrame = CFrame.new(0, 5, 0)
+        wait(1)
+    end
     sendCommand("-pd")
 else
     print("failed to reanimate character: " .. tostring(error))
